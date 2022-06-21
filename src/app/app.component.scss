@@ -1,0 +1,28 @@
+%flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+
+    .wheal {
+        flex-basis: 60%;
+        @extend %flex-col;
+        align-items: center;
+    }
+
+    .item {
+        flex-basis: 40%;
+        @extend %flex-col;
+    }
+
+    .item-list {
+        display: flex;
+        justify-content: space-between;
+    }
+}

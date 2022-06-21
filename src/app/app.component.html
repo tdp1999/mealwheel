@@ -1,0 +1,47 @@
+<h1 class="text-center">My Meal Wheel</h1>
+
+<div class="container">
+    <div class="wheal">
+        <h2>Spin the wheel to see what you will eat this meal!</h2>
+        <p>Touch the wheel to spin</p>
+
+        <ngx-wheel
+            *ngIf="items.length > 0; else noItems"
+            #wheel
+            [width]="400"
+            [height]="400"
+            [spinDuration]="3"
+            [items]="items"
+            [spinAmount]="3"
+            [innerRadius]="25"
+            [textOrientation]="textOrientation"
+            [textAlignment]="textAlignment"
+            pointerStrokeColor="black"
+            pointerFillColor="gold"
+            [idToLandOn]="idToLandOn"
+            (onSpinComplete)="onSpinComplete()"
+        ></ngx-wheel>
+
+        <ng-template #noItems>No Items</ng-template>
+    </div>
+    <div class="item">
+        <h2 class="text-center">Meal list</h2>
+        <ul>
+            <li *ngFor="let item of items; let i = index" class="item-list">
+                <span>{{ item.text }}</span>
+                <button type="button" (click)="deleteItem(i)">
+                    Delete Item
+                </button>
+            </li>
+        </ul>
+        <h3>Add new meal</h3>
+        <form (ngSubmit)="onSubmit()">
+            <label for="meal">Meal name</label>
+            <input id="meal" name="meal" type="text" [(ngModel)]="meal" />
+        </form>
+
+        <button type="button" (click)="removeAllItems()">
+            Reset all Items
+        </button>
+    </div>
+</div>
